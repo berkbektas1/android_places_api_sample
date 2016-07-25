@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:paddingBottom="@dimen/activity_vertical_margin"
@@ -10,7 +11,21 @@
     tools:context="com.busradeniz.place_api_sample.MainActivity">
 
     <TextView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/txtPlaceName"
+        android:padding="5dp"
+        android:layout_marginBottom="10dp"
+        android:hint="@string/txt_place_name_hint"/>
+
+    <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!" />
-</RelativeLayout>
+        android:id="@+id/btnSelectPlace"
+        android:text="@string/btn_select_place"
+        android:padding="10dp"
+        android:background="@android:color/holo_blue_light"
+        android:textColor="@android:color/white"
+        android:onClick="onClickedSelectPlace"
+        />
+</LinearLayout>
