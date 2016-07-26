@@ -8,6 +8,7 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -16,9 +17,13 @@
             </intent-filter>
         </activity>
 
+        <activity
+            android:name=".PlacePickerSampleActivity"
+            android:screenOrientation="portrait"></activity>
+
         <meta-data
             android:name="com.google.android.geo.API_KEY"
-            android:value="AIzaSyB4veubMrKJberWxteM7UR9drDD1JCxBUw"/>
+            android:value="AIzaSyB4veubMrKJberWxteM7UR9drDD1JCxBUw" />
     </application>
 
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />

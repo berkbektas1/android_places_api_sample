@@ -28,12 +28,9 @@ import com.google.android.gms.location.places.ui.PlacePicker;
 public class MainActivity extends AppCompatActivity implements GoogleApiClient.OnConnectionFailedListener {
 
     private static String LOG_TAG = "MainActivity";
-    private static int PLACE_PICKER_REQUEST = 1;
     private static final int PERMISSION_REQUEST_TO_ACCESS_LOCATION = 2;
 
 
-    private Button btnSelectPlace;
-    private TextView txtPlaceName;
     private GoogleApiClient googleApiClient;
 
 
@@ -48,37 +45,33 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
                 .enableAutoManage(this, this)
                 .build();
 
-        btnSelectPlace = (Button) this.findViewById(R.id.btnSelectPlace);
-        txtPlaceName = (TextView) this.findViewById(R.id.txtPlaceName);
 
-        btnSelectPlace.setOnClickListener(new View.OnClickListener() {
+        Button btnPlacePicker = (Button) this.findViewById(R.id.btnPlacePicker);
+        btnPlacePicker.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                openPlacePickerView();
+                startActivity(new Intent(MainActivity.this, PlacePickerSampleActivity.class));
             }
         });
 
-        getCurrentLocation();
-    }
 
-    private void openPlacePickerView() {
-        PlacePicker.IntentBuilder builder = new PlacePicker.IntentBuilder();
-        try {
-            startActivityForResult(builder.build(this), PLACE_PICKER_REQUEST);
-        } catch (GooglePlayServicesRepairableException e) {
-            e.printStackTrace();
-        } catch (GooglePlayServicesNotAvailableException e) {
-            e.printStackTrace();
-        }
-    }
 
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (requestCode == PLACE_PICKER_REQUEST) {
-            if (resultCode == RESULT_OK) {
-                Place place = PlacePicker.getPlace(this, data);
-                Log.i(LOG_TAG, String.format("Place %s", place.getName()));
+        Button btnGetCurrentLocation = (Button) this.findViewById(R.id.btnGetCurrentLocation);
+        btnGetCurrentLocation.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
             }
-        }
+        });
+
+
+        Button btnPlaceAutoComplete = (Button) this.findViewById(R.id.btnPlaceAutoComplete);
+        btnPlaceAutoComplete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
     }
 
     @Override
@@ -105,8 +98,8 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
             });
         }
 
-
     }
+
 
     private boolean isLocationPermissionGranted() {
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
@@ -140,6 +133,10 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
             // other 'case' lines to check for other
             // permissions this app might request
         }
+    }
+
+    private void onClickedBtnPlaceAutoComplete(){
+
     }
 
 }

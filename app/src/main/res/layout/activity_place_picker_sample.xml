@@ -10,39 +10,26 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.busradeniz.place_api_sample.MainActivity">
 
-    <Button
+    <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/btnPlacePicker"
-        android:text="@string/btn_place_picker"
+        android:id="@+id/txtPlaceName"
+        android:layout_margin="20dp"
+        android:padding="15dp"
+        android:hint="@string/txt_select_place_hint"
+        android:textSize="@dimen/place_autocomplete_prediction_primary_text"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/btnSelectPlace"
+        android:text="@string/btn_select_place"
         android:padding="15dp"
         android:layout_margin="20dp"
         android:background="@android:color/holo_blue_light"
         android:textColor="@android:color/white"
         />
 
-
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/btnGetCurrentLocation"
-        android:text="@string/btn_get_current_location"
-        android:padding="15dp"
-        android:layout_margin="20dp"
-        android:background="@android:color/holo_blue_light"
-        android:textColor="@android:color/white"
-        />
-
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/btnPlaceAutoComplete"
-        android:text="@string/btn_place_autocomplete"
-        android:padding="15dp"
-        android:layout_margin="20dp"
-        android:background="@android:color/holo_blue_light"
-        android:textColor="@android:color/white"
-        />
 
 
 

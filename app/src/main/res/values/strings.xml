@@ -1,5 +1,12 @@
 <resources>
     <string name="app_name">place_api_sample</string>
+    <string name="btn_place_picker">Place Picker</string>
+    <string name="btn_get_current_location">Get Current Location</string>
+    <string name="btn_place_autocomplete">Place AutoComplete</string>
+    <string name="txt_select_place_hint">Place Name</string>
     <string name="btn_select_place">Select a Place</string>
-    <string name="txt_place_name_hint">Place Name</string>
+
+
+
+
 </resources>
