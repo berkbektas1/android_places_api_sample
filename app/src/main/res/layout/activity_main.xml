@@ -12,9 +12,9 @@
 
     <TextView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:id="@+id/txtPlaceName"
-        android:padding="5dp"
+        android:padding="10dp"
         android:layout_marginBottom="10dp"
         android:hint="@string/txt_place_name_hint"/>
 
@@ -28,4 +28,7 @@
         android:textColor="@android:color/white"
         android:onClick="onClickedSelectPlace"
         />
+
+
+
 </LinearLayout>
