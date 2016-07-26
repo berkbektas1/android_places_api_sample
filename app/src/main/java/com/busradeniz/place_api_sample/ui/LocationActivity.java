@@ -3,7 +3,6 @@ package com.busradeniz.place_api_sample.ui;
 import android.Manifest;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
-import android.os.PersistableBundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
@@ -12,7 +11,6 @@ import android.util.Log;
 import android.widget.TextView;
 
 import com.busradeniz.place_api_sample.R;
-import com.busradeniz.place_api_sample.utils.PlaceApiSampleApplication;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.common.api.PendingResult;
@@ -30,6 +28,7 @@ public class LocationActivity extends AppCompatActivity implements GoogleApiClie
     private static final int PERMISSION_REQUEST_TO_ACCESS_LOCATION = 2;
 
     private TextView txtLocation;
+    private GoogleApiClient googleApiClient;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -37,6 +36,13 @@ public class LocationActivity extends AppCompatActivity implements GoogleApiClie
         setContentView(R.layout.activity_location);
 
         txtLocation = (TextView) this.findViewById(R.id.txtLocation);
+
+        googleApiClient = new GoogleApiClient.Builder(this)
+                .addApi(Places.PLACE_DETECTION_API)
+                .addApi(Places.GEO_DATA_API)
+                .enableAutoManage(this, this)
+                .build();
+
         getCurrentLocation();
     }
 
@@ -47,20 +53,10 @@ public class LocationActivity extends AppCompatActivity implements GoogleApiClie
             Log.e(LOG_TAG, "Permission is not granted");
 
             ActivityCompat.requestPermissions(this,new String[]{Manifest.permission.ACCESS_FINE_LOCATION},PERMISSION_REQUEST_TO_ACCESS_LOCATION);
-
             return;
         }
 
         Log.i(LOG_TAG, "Permission is granted");
-
-
-         GoogleApiClient googleApiClient = new GoogleApiClient.Builder(this)
-                .addApi(Places.GEO_DATA_API)
-                .addApi(Places.PLACE_DETECTION_API)
-                .enableAutoManage(this, this)
-                .build();
-
-
 
         PendingResult<PlaceLikelihoodBuffer> result = Places.PlaceDetectionApi.getCurrentPlace(googleApiClient, null);
         result.setResultCallback(new ResultCallback<PlaceLikelihoodBuffer>() {
@@ -78,7 +74,6 @@ public class LocationActivity extends AppCompatActivity implements GoogleApiClie
             }
         });
     }
-
 
 
     @Override
@@ -103,6 +98,6 @@ public class LocationActivity extends AppCompatActivity implements GoogleApiClie
 
     @Override
     public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
-
+        Log.e(LOG_TAG, "GoogleApiClient connection failed: " + connectionResult.getErrorMessage());
     }
 }

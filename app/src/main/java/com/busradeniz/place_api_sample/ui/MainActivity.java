@@ -9,26 +9,17 @@ import android.view.View;
 import android.widget.Button;
 
 import com.busradeniz.place_api_sample.R;
-import com.busradeniz.place_api_sample.utils.PlaceApiSampleApplication;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
-import com.google.android.gms.location.places.Places;
 
 public class MainActivity extends AppCompatActivity implements GoogleApiClient.OnConnectionFailedListener {
 
     private static String LOG_TAG = "MainActivity";
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        PlaceApiSampleApplication.googleApiClient = new GoogleApiClient.Builder(this)
-                .addApi(Places.GEO_DATA_API)
-                .addApi(Places.PLACE_DETECTION_API)
-                .enableAutoManage(this, this)
-                .build();
 
         Button btnPlacePicker = (Button) this.findViewById(R.id.btnPlacePicker);
         btnPlacePicker.setOnClickListener(new View.OnClickListener() {
@@ -59,10 +50,13 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
     }
 
     @Override
+    protected void onDestroy() {
+        super.onDestroy();
+    }
+
+    @Override
     public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
         Log.e(LOG_TAG, "GoogleApiClient connection failed : " + connectionResult.getErrorMessage());
     }
-
-
 
 }
